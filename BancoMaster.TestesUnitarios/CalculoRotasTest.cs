@@ -41,28 +41,49 @@ Sendo assim, o endpoint de consulta deverÃ¡ efetuar o calculo de melhor rota.
 public class CalculoRotas
 {
     private readonly List<Rota> _rotas;
-    private List<List<Rota>> _rotasCalculadas;
+
     public CalculoRotas(List<Rota> rotas) => _rotas = rotas;
-    public Task<List<Rota>> GetRouteWithLowerPrice(Local Origem, Local Destino)
+
+    public async Task<List<Rota>> GetRouteWithLowerPrice(Local origem, Local destino)
     {
-        var rotasParaDestino = _rotas
-                    .Where(r => r.Origem == Origem)
-                    .ToList();
-         
-        return Task.FromResult(_rotasCalculadas);
+        var todasRotasPossiveis = CalcularTodasRotas(origem, destino);
+        var menorPreco = todasRotasPossiveis.Min(rota => rota.Sum(r => r.Valor));
+
+        return todasRotasPossiveis.FirstOrDefault(rota => rota.Sum(r => r.Valor) == menorPreco)!;
     }
-    private IEnumerable<Rota> GetRoutes(Rota rota, Local Destino)
+
+    private List<List<Rota>> CalcularTodasRotas(Local origem, Local destino)
     {
-        if(rota.Destino == Destino) yield return rota;
-         var rotasSelecionadas = _rotas
-                                .Where(r => r.Origem == rota.Origem)
-                                .ToList();
-        foreach (var _rota in rotasSelecionadas)
+        var rotasPossiveis = new List<List<Rota>>();
+        var rotasParciais = new Stack<Rota>();
+        var visitados = new HashSet<Local>();
+
+        Visit(origem, destino, rotasPossiveis, rotasParciais, visitados);
+
+        return rotasPossiveis;
+    }
+
+    private void Visit(Local origem, Local destino, List<List<Rota>> rotasPossiveis, Stack<Rota> rotasParciais, HashSet<Local> visitados)
+    {
+        if (origem == destino)
         {
-            //yield GetRoutes(_rota, Destino);
-        } 
+            rotasPossiveis.Add(rotasParciais.ToList());
+            return;
+        }
+
+        visitados.Add(origem);
+
+        foreach (var rota in _rotas.Where(r => r.Origem == origem && !visitados.Contains(r.Destino)))
+        {
+            rotasParciais.Push(rota);
+            Visit(rota.Destino, destino, rotasPossiveis, rotasParciais, visitados);
+            rotasParciais.Pop();
+        }
+
+        visitados.Remove(origem);
     }
 }
+
 public record Local(string Nome)
 {
     internal static Local Create(string Nome)
