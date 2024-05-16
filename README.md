@@ -23,6 +23,10 @@ flowchart TD
     J -->|TOTAL| JT[R$ 45]
     E -->|ORL-CDG| K[R$ 5]
     K -->|TOTAL| KT[R$ 61]
+    style C stroke:#D50000
+    style HT stroke:#D50000
+    style JT stroke:#D50000
+    style KT stroke:#D50000
 ```
 Projeto de testes executado com sucesso.
 ```C#
