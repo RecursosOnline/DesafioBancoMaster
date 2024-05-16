@@ -66,6 +66,40 @@ app.MapGet("/rotas", () =>
 .WithName("Rotas")
 .WithOpenApi();
 
+app.MapPost("/rotas", ([FromBody] Rota rota) =>
+{
+    if(!rotas.Any(x=> x.Origem == rota.Origem && x.Destino == rota.Destino))    
+    {
+        rotas.Add(rota);
+    }
+})
+.WithName("Rotas")
+.WithOpenApi();
+
+app.MapDelete("/rotas", ([FromBody] Rota rota) =>
+{
+    var _rota = rotas.FirstOrDefault(x=> x.Origem == rota.Origem && x.Destino == rota.Destino);
+    if(_rota is not null)    
+    {
+        rotas.Remove(_rota);
+    }
+})
+.WithName("Rotas")
+.WithOpenApi();
+
+app.MapPatch("/rotas", ([FromBody] Rota rota) =>
+{
+    var _rota = rotas.FirstOrDefault(x=> x.Origem == rota.Origem && x.Destino == rota.Destino);
+    if(_rota is not null)    
+    {
+         rotas.Remove(_rota);
+         
+         rotas.Add(rota);
+    }
+})
+.WithName("Rotas")
+.WithOpenApi();
+
 app.Run();
 
 

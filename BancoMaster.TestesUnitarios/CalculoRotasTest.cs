@@ -39,8 +39,8 @@ public class CalculoRotasTest
     {
 
         var calculoRotas = new CalculoRotasService(rotas);
-        var rotaMaisEconomica = await calculoRotas.GetRouteWithLowerPrice(locais["GRU"], locais["CDG"]);
-        Assert.Equal(40, rotaMaisEconomica.Sum(r => r.Valor));       
+        var rotaMaisEconomica = await calculoRotas.GetRouteWithLowerPrice(locais[origem], locais[destino]);
+        Assert.Equal(valor, rotaMaisEconomica.Sum(r => r.Valor));       
 
     }
 }
