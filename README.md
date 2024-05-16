@@ -5,6 +5,25 @@
 > [!WARNING]
 > Não consegui executar o projeto API pois esta dando erro no CodeSpace.
 
+### Diagrama das possiveis rotas entre GRU e CDG
+
+```mermaid
+flowchart TD    
+    A{ROTAS:GRU-CDG}
+    A -->|GRU-BRC| B[R$ 10]
+    A -->|GRU-CDG| C[R$ 75]
+    A -->|GRU-SCL| D[R$ 20]
+    A -->|GRU-ORL| E[R$ 56]
+    B -->|BRC-SCL| F[R$ 5]
+    F -->|SCL-ORL| G[R$ 20]
+    G -->|ORL-CDG| H[R$ 5]
+    H -->|TOTAL| HT[R$ 40]
+    D -->|SCL-ORL| I[R$ 20]
+    I -->|ORL-CDG| J[R$ 5]
+    J -->|TOTAL| JT[R$ 45]
+    E -->|ORL-CDG| K[R$ 5]
+    K -->|TOTAL| KT[R$ 61]
+```
 Projeto de testes executado com sucesso.
 ```C#
     [Theory]
