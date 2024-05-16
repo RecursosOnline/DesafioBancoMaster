@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoMaster.API", "BancoMas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoMaster.TestesUnitarios", "BancoMaster.TestesUnitarios\BancoMaster.TestesUnitarios.csproj", "{92C324A5-B2FC-434C-B9C2-F18122A8E637}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoMaster.Infraestructure", "BancoMaster.Infraestructure\BancoMaster.Infraestructure.csproj", "{5DF35F01-4832-4C77-8BE8-3BABA4CB7F98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{92C324A5-B2FC-434C-B9C2-F18122A8E637}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92C324A5-B2FC-434C-B9C2-F18122A8E637}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92C324A5-B2FC-434C-B9C2-F18122A8E637}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DF35F01-4832-4C77-8BE8-3BABA4CB7F98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DF35F01-4832-4C77-8BE8-3BABA4CB7F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DF35F01-4832-4C77-8BE8-3BABA4CB7F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DF35F01-4832-4C77-8BE8-3BABA4CB7F98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
